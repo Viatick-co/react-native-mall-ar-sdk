@@ -9,38 +9,55 @@
 import UIKit
 
 class ARView: UIView {
-//    @objc var onClickCoupon: RCTBubblingEventBlock?
+    @objc var onClickCoupon: RCTBubblingEventBlock?
+    private var _sdkKey:String?
+    var sdkKeyText = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+    lazy var customView = UIView(frame: CGRect(x: 50, y: 50, width: 220, height: 220))
+    
+    @objc func someAction(_ sender:UITapGestureRecognizer){
+        print("view was clicked")
+        guard let onClickCoupon = self.onClickCoupon else { return }
+
+        let params: [String : Any] = ["id":"react demo","value2":1]
+        onClickCoupon(params)
+    }
+    
+    @objc var sdkKey: NSString? {
+      set {
+          _sdkKey = newValue as? String
+          sdkKeyText.text = newValue as? String;
+          sdkKeyText.textColor = UIColor.green
+      }
+      get {
+          return _sdkKey as NSString?
+      }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("setting up view");
+        var arViewController : ARViewController
         setupView()
+       
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        print("IOS view");
         setupView()
     }
     
-    var sdkKey: String? {
-      set {
-        self.sdkKey = newValue
-      }
-        
-      get {
-          return self.sdkKey
-      }
-    }
-    
     private func setupView() {
-        let viewDemo = UIView()
-        viewDemo.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
-        viewDemo.backgroundColor = (self.sdkKey == nil) ? UIColor.red : UIColor.green;
+        print("inside settup", self._sdkKey);
 
-        self.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
+        
+        customView.isUserInteractionEnabled = true
+        customView.addGestureRecognizer(gesture)
+        customView.addSubview(sdkKeyText);
+        customView.backgroundColor = UIColor.red
+        
+        self.addSubview(customView)
     }
-    
+        
 //    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        guard let onClickCoupon = self.onClickCoupon else { return }
 //

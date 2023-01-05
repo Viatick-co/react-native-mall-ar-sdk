@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/Viatick-co/react-native-mall-ar-sdk.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
+  s.ios.vendored_frameworks = 'ios/IndoorAtlas.framework'
 
   s.dependency "React-Core"
 

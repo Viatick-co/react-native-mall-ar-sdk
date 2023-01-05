@@ -1,4 +1,6 @@
 import { NativeModules, Platform } from 'react-native';
+import { requireNativeComponent } from 'react-native';
+import React from 'react';
 
 const LINKING_ERROR =
   `The package 'react-native-jarvis-mall-ar' doesn't seem to be linked. Make sure: \n\n` +
@@ -16,7 +18,21 @@ const JarvisMallAr = NativeModules.JarvisMallAr
         },
       }
     );
+const NATIVE_VIEW_NAME = 'ARView';
+export const ARViewRaw = requireNativeComponent(NATIVE_VIEW_NAME);
+type ARViewProps = {
+  sdkKey: string;
+  onStart?: () => void;
+  onEnd?: () => void;
+  onCouponClick?: () => void;
+};
+
+const ARView: React.FC<ARViewProps> = (props) => {
+  return <ARViewRaw {...props} />;
+};
 
 export function multiply(a: number, b: number): Promise<number> {
   return JarvisMallAr.multiply(a, b);
 }
+
+export { ARView };

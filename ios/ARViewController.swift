@@ -91,15 +91,15 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
     private var searchTableView: UITableView?
     private var searchDataSource: [ARPOI] = []
     private var statusBarBg = UIView()
-    
+        
     func statusBarHeight() -> CGFloat {
         let statusBarSize = UIApplication.shared.statusBarFrame.size
         return Swift.min(statusBarSize.width, statusBarSize.height)
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Show spinner while waiting for location information from IALocationManager
 //        DispatchQueue.main.async {
 //            SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
@@ -119,6 +119,7 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
         let outline = SCNMaterial()
         outline.diffuse.contents = UIColor.white
         outline.cullMode = .front
+        
         
         repeat {
             target = SCNScene(named: "Models.scnassets/finish.obj")!.rootNode.childNodes[0]

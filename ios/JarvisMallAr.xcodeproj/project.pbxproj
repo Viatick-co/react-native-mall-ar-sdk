@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A346A76A29698B8F00B17EE7 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A346A76929698B8F00B17EE7 /* Models.scnassets */; };
 		A3A0BFC0295C27A600194FD5 /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A0BFBF295C27A600194FD5 /* ARView.swift */; };
 		A3A0BFD0295E980100194FD5 /* ARViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0BFCE295E980100194FD5 /* ARViewManager.m */; };
 		A3A0BFD1295E980100194FD5 /* ARViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A0BFCF295E980100194FD5 /* ARViewManager.swift */; };
 		A3A0BFDF29641C2B00194FD5 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A0BFDE29641C2B00194FD5 /* ARViewController.swift */; };
-		A3A0BFE129642A6000194FD5 /* IndoorAtlas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A0BFE029642A6000194FD5 /* IndoorAtlas.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,11 +28,11 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libJarvisMallAr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJarvisMallAr.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A346A76929698B8F00B17EE7 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		A3A0BFBF295C27A600194FD5 /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
 		A3A0BFCE295E980100194FD5 /* ARViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewManager.m; sourceTree = "<group>"; };
 		A3A0BFCF295E980100194FD5 /* ARViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewManager.swift; sourceTree = "<group>"; };
 		A3A0BFDE29641C2B00194FD5 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
-		A3A0BFE029642A6000194FD5 /* IndoorAtlas.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IndoorAtlas.framework; sourceTree = "<group>"; };
 		A3A0BFE229655E6A00194FD5 /* JarvisMallAr-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JarvisMallAr-Swift.h"; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* JarvisMallAr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JarvisMallAr-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -42,7 +42,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3A0BFE129642A6000194FD5 /* IndoorAtlas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,9 +59,9 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				A346A76929698B8F00B17EE7 /* Models.scnassets */,
 				A3A0BFE229655E6A00194FD5 /* JarvisMallAr-Swift.h */,
 				A3A0BFDE29641C2B00194FD5 /* ARViewController.swift */,
-				A3A0BFE029642A6000194FD5 /* IndoorAtlas.framework */,
 				A3A0BFCE295E980100194FD5 /* ARViewManager.m */,
 				A3A0BFCF295E980100194FD5 /* ARViewManager.swift */,
 				A3A0BFBF295C27A600194FD5 /* ARView.swift */,
@@ -81,6 +80,7 @@
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
+				A346A76729698AE600B17EE7 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -122,6 +122,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A346A76729698AE600B17EE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A346A76A29698B8F00B17EE7 /* Models.scnassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {

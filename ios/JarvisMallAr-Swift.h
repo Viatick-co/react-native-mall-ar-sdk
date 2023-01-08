@@ -9,11 +9,6 @@
 #ifndef JarvisMallAr_Swift_h
 #define JarvisMallAr_Swift_h
 //
-#import <IndoorAtlas/IndoorAtlas.h>
-#import <IndoorAtlas/IAFloor.h>
-#import <IndoorAtlas/IAFloorPlan.h>
-#import <IndoorAtlas/IALocationManager.h>
-
 #import <React/RCTBridgeModule.h>
 #import <React/RCTViewManager.h>
 #import <React/RCTBundleURLProvider.h>

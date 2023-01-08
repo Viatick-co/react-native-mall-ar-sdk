@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IndoorAtlas
 
 class ARView: UIView {
     @objc var onClickCoupon: RCTBubblingEventBlock?
@@ -34,15 +35,16 @@ class ARView: UIView {
     }
     
     override init(frame: CGRect) {
+        var arViewController = ARViewController.init()
+
         super.init(frame: frame)
-        var arViewController : ARViewController
-        setupView()
+        self.addSubview(arViewController.view)
+//        setupView()
        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupView()
     }
     
     private func setupView() {
@@ -51,7 +53,7 @@ class ARView: UIView {
         let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
         
         customView.isUserInteractionEnabled = true
-        customView.addGestureRecognizer(gesture)
+//        customView.addGestureRecognizer(gesture)
         customView.addSubview(sdkKeyText);
         customView.backgroundColor = UIColor.red
         

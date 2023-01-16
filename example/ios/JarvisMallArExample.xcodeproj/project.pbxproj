@@ -489,6 +489,7 @@
 				DEVELOPMENT_TEAM = 65BFNMKECG;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = JarvisMallArExample/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "Allow Motion Access to detect motion";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,6 +516,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 65BFNMKECG;
 				INFOPLIST_FILE = JarvisMallArExample/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "Allow Motion Access to detect motion";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

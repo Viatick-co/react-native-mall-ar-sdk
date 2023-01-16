@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform, ViewStyle } from 'react-native';
 import { requireNativeComponent } from 'react-native';
 import React from 'react';
 
@@ -22,6 +22,7 @@ const NATIVE_VIEW_NAME = 'ARView';
 export const ARViewRaw = requireNativeComponent(NATIVE_VIEW_NAME);
 type ARViewProps = {
   sdkKey: string;
+  style?: ViewStyle;
   onStart?: () => void;
   onEnd?: () => void;
   onCouponClick?: () => void;

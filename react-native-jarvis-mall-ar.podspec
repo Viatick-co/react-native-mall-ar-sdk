@@ -17,7 +17,6 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
   s.resources = ["ios/Models.scnassets"]
   s.dependency "IndoorAtlas"
-
   s.dependency "React-Core"
 
   # Don't install the dependencies when we run `pod install` in the old architecture.

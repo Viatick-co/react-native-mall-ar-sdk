@@ -4,10 +4,11 @@ import { StyleSheet, View } from 'react-native';
 import { ARView } from 'react-native-jarvis-mall-ar';
 
 export default function App() {
-  const SDK_KEY = 'JarvisKey123123';
+  const SDK_KEY = '';
   return (
     <View style={styles.container}>
       <ARView
+        style={styles.arView}
         sdkKey={SDK_KEY}
         onCouponClick={() => {
           console.log('RN side log');
@@ -21,9 +22,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  arView: {
+    flex: 1,
   },
 });

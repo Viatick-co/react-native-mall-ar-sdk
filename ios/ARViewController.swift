@@ -11,7 +11,6 @@ import SceneKit
 import SceneKit.ModelIO
 import ARKit
 import IndoorAtlas
-//import SVProgressHUD
 
 extension CLLocationCoordinate2D: Equatable {}
 public func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
@@ -91,7 +90,9 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
     private var searchTableView: UITableView?
     private var searchDataSource: [ARPOI] = []
     private var statusBarBg = UIView()
-        
+    private var navBar: UINavigationBar!
+    private var alert: UIAlertController!
+
     func statusBarHeight() -> CGFloat {
         let statusBarSize = UIApplication.shared.statusBarFrame.size
         return Swift.min(statusBarSize.width, statusBarSize.height)
@@ -99,11 +100,20 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        alert = UIAlertController(title: nil, message: "Loading data...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
 
+        navBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: view.frame.size.width, height: 100))
+        
         // Show spinner while waiting for location information from IALocationManager
-//        DispatchQueue.main.async {
-//            SVProgressHUD.show(withStatus: NSLocalizedString("Waiting for location data", comment: ""))
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.present(self.alert, animated: true, completion: nil)
+        }
         
         UIApplication.shared.isIdleTimerDisabled = true
         
@@ -114,6 +124,7 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
         arView.session.run(ARViewController.configuration())
         arView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         arView.delegate = self
+        
         self.view.addSubview(arView)
         
         let outline = SCNMaterial()
@@ -156,24 +167,33 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
         infoLabel.widthAnchor.constraint(equalTo: arView.widthAnchor, constant: -8).isActive = true
         infoLabel.trailingAnchor.constraint(equalTo: arView.trailingAnchor, constant: -8 / 2).isActive = true
         infoLabel.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        infoLabel.topAnchor.constraint(equalTo: arView.topAnchor, constant: 88).isActive = true
+        infoLabel.topAnchor.constraint(equalTo: arView.topAnchor, constant: 100).isActive = true
         
-        searchBar = UISearchBar()
+        searchBar = UISearchBar();
         searchBar?.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        searchBar?.searchBarStyle = .minimal
+        searchBar?.searchBarStyle = .default
         searchBar?.placeholder = "Search POIs"
         searchBar?.sizeToFit()
         searchBar?.showsCancelButton = true
         searchBar?.delegate = self
-        navigationItem.titleView = searchBar
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.view.backgroundColor = .clear
-        searchTableView = UITableView(frame: self.view.bounds)
+        
+        let navItem = UINavigationItem();
+        navItem.titleView = searchBar;
+        
+        navBar.setItems([navItem], animated: false)
+        self.view.addSubview(navBar)
+        self.view.bringSubviewToFront(navBar)
+    
+        searchTableView = UITableView(frame: CGRect(x: 0, y: 95, width: view.frame.size.width, height: view.frame.size.height))
+        searchTableView?.topAnchor.constraint(equalTo: searchBar!.bottomAnchor, constant: 100)
+        infoLabel.topAnchor.constraint(equalTo: arView.topAnchor, constant: 100).isActive = true
+
+        searchTableView?.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0);
+
         searchTableView?.isHidden = true
         searchTableView?.dataSource = self
         searchTableView?.delegate = self
+
         self.view.addSubview(searchTableView!)
         statusBarBg.backgroundColor = .clear
         statusBarBg.translatesAutoresizingMaskIntoConstraints = false
@@ -192,11 +212,14 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.isTranslucent = false
+        navBar.setBackgroundImage(nil, for: .default)
+        navBar.shadowImage = nil
+        navBar.isTranslucent = false
         hideSearchTable()
+        dismiss(animated: false, completion: nil)
+
 //        SVProgressHUD.dismiss()
+        dismiss(animated: false, completion: nil)
         UIApplication.shared.isIdleTimerDisabled = false
         indooratlas.releaseArSession()
         indooratlas.stopUpdatingLocation()
@@ -226,7 +249,10 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
         if (region.type == .iaRegionTypeFloorPlan) {
             floorPlan = region.floorplan
         } else if (region.type == .iaRegionTypeVenue) {
+            dismiss(animated: false, completion: nil)
+
 //            SVProgressHUD.dismiss()
+            dismiss(animated: false, completion: nil)
             updatePois(region.venue?.pois)
         }
     }
@@ -249,7 +275,7 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
             scale = (floorPlan.widthMeters * floorPlan.heightMeters) / 50.0
             scale = min(max(scale, 0.4), 1.5)
         }
-        
+         
         if (arSession.converged == true) {
             var matrix: simd_float4x4 = matrix_identity_float4x4;
             if (arSession.wayfindingTarget.updateModelMatrix(&matrix) == true) {
@@ -288,7 +314,7 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         while let n = arView.scene.rootNode.childNodes.first { n.removeFromParentNode() }
         guard let arSession = indooratlas.arSession else { return }
-        
+
         UIView.animate(withDuration: 0.25) {
             switch frame.camera.trackingState {
             case .normal:
@@ -393,7 +419,7 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
     func hideSearchTable() {
         UIView.animate(withDuration: 0.25, animations: {
             self.searchTableView?.alpha = 0
-            self.navigationController?.navigationBar.backgroundColor = .clear
+            self.navBar.backgroundColor = .clear
             self.statusBarBg.backgroundColor = .clear
         }) { (finished) in
             if finished {
@@ -412,9 +438,10 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchTableView?.alpha = 0
         searchTableView?.isHidden = false
+        searchTableView?.layer.zPosition = 1
         UIView.animate(withDuration: 0.25) {
             self.searchTableView?.alpha = 1
-            self.navigationController?.navigationBar.backgroundColor = UIColor(red: 22/255, green: 129/255, blue: 251/255, alpha: 1.0)
+            self.navBar.backgroundColor = UIColor(red: 22/255, green: 129/255, blue: 251/255, alpha: 1.0)
             self.statusBarBg.backgroundColor = UIColor(red: 22/255, green: 129/255, blue: 251/255, alpha: 1.0)
         }
         self.searchBar(searchBar, textDidChange: "")

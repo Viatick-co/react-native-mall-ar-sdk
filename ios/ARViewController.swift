@@ -66,7 +66,7 @@ class ARPOI {
     init(_ poi: IAPOI, _ session: IAARSession) {
         self.poi = poi
         object = session.createPoi(poi.coordinate, floorNumber: Int32(poi.floor.level), heading: 0, zOffset: 0.75)
-        let image = UIImage(named: "Models.scnassets/IA_AR_ad_framed.png")
+        let image = UIImage(named: "Models.scnassets/voucher.png")
         let material = SCNMaterial()
         material.diffuse.contents = image
         let bound = max(image!.size.width, image!.size.height)
@@ -101,7 +101,7 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        alert = UIAlertController(title: nil, message: "Loading data...", preferredStyle: .alert)
+        alert = UIAlertController(title: nil, message: "Waiting for location data...", preferredStyle: .alert)
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.style = UIActivityIndicatorView.Style.gray
@@ -111,7 +111,7 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
         navBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: view.frame.size.width, height: 100))
         
         // Show spinner while waiting for location information from IALocationManager
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.present(self.alert, animated: true, completion: nil)
         }
         
@@ -217,9 +217,6 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
         navBar.isTranslucent = false
         hideSearchTable()
         dismiss(animated: false, completion: nil)
-
-//        SVProgressHUD.dismiss()
-        dismiss(animated: false, completion: nil)
         UIApplication.shared.isIdleTimerDisabled = false
         indooratlas.releaseArSession()
         indooratlas.stopUpdatingLocation()
@@ -249,9 +246,6 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
         if (region.type == .iaRegionTypeFloorPlan) {
             floorPlan = region.floorplan
         } else if (region.type == .iaRegionTypeVenue) {
-            dismiss(animated: false, completion: nil)
-
-//            SVProgressHUD.dismiss()
             dismiss(animated: false, completion: nil)
             updatePois(region.venue?.pois)
         }
@@ -378,6 +372,7 @@ class ARViewController: UIViewController, IALocationManagerDelegate, ARSCNViewDe
             }
             
             for poi in pois {
+                
                 if (poi.poi.coordinate == wayfindingTarget?.coordinate) { continue }
                 if let floorPlan = self.floorPlan {
                     if (floorPlan.floor?.level != poi.poi.floor.level) { continue }

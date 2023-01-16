@@ -57,11 +57,11 @@
   <key>NSBluetoothAlwaysUsageDescription</key>
   <string>The app may frequently use bluetooth to transfer data to peers.</string>
   <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>The app may frequently use location to detect position</string>
+  <string>The app may frequently use location to detect position of users</string>
   <key>NSLocationAlwaysUsageDescription</key>
-  <string>The app may frequently use location to detect position</string>
+  <string>The app may frequently use location to detect position of users</string>
   <key>NSMotionUsageDescription</key>
-  <string>The app need to access motion</string>
+  <string>The app need to access motion of users device</string>
   <key>NSCameraUsageDescription</key>
   <string>The app need to access camera permission</string>
 

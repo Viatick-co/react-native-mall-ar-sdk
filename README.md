@@ -55,7 +55,24 @@ Example:
 ```
 
 ### iOS
-##### Install pods:
+
+##### 1. Update Info.Plist file
+
+`<key>NSBluetoothPeripheralUsageDescription</key>`\
+`<string>The app uses bluetooth to transfer data to a neighbouring device.</string>`\
+`<key>NSBluetoothAlwaysUsageDescription</key>`\
+`<string>The app may frequently use bluetooth to transfer data to peers.</string>`\
+`<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>`\
+`<string>The app may frequently use location to detect position of users</string>`\
+`<key>NSLocationAlwaysUsageDescription</key>`\
+`<string>The app may frequently use location to detect position of users</string>`\
+`<key>NSMotionUsageDescription</key>`\
+`<string>The app need to access motion of users device</string>`\
+`<key>NSCameraUsageDescription</key>`\
+`<string>The app need to access camera permission</string>`
+
+
+##### 2. Install pods:
 
 `cd ios` \
 `pod install`

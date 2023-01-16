@@ -1,6 +1,7 @@
 # react-native-jarvis-mall-ar
 
-React native mall ar sdk for indoor navigation
+## Description
+Digital features enhance the shopping experience for visitors and provide new efficiencies for mall owners and operators. With react-native-jarvis-mall-sdk, shopping malls can build completely custom indoor mapping experiences for both Android and IOS.
 
 ## Installation
 
@@ -84,7 +85,7 @@ import { ARView } from 'react-native-jarvis-mall-ar';
 
 // ...
 <ARView
-    sdkKey={""}
+    sdkKey={"sdkKey"}
     onStart={()=>{}}
     onStop={() => {}}
     onCouponClick={() => {}}
@@ -98,9 +99,16 @@ import { ARView } from 'react-native-jarvis-mall-ar';
 - `onStop` : Callback method when stop AR feature.
 - `onCouponClick` | `(couponId : string) => {}` : Callback method when user interact with the coupon on AR side.
 
+## Features
+
+`Warning: This project currently supports IOS only. Android support will come, contributions are welcomed.`
+
+## Example
+
+`https://github.com/Viatick-co/react-native-mall-ar-sdk/tree/main/example`
 ## License
-
-MIT
-
+Viatick team \
+Website : `https://viatick.com/` \
+Email: `enquiry@viatick.com`
 ---
 

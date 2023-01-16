@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { ARView } from 'react-native-jarvis-mall-ar';
 
 export default function App() {
-  const SDK_KEY = '';
+  const SDK_KEY = 'sdk_key';
   return (
     <View style={styles.container}>
       <ARView

@@ -85,6 +85,10 @@ class ARView: UIView {
     }
     
     private func loadApplication(apiKey : String) {
+        if(apiKey == "") {
+            self.handleError()
+            return;
+        }
         let apiHost = "https://jarvis.viatick.com/apis";
         let url = URL(string: apiHost + "/account/application/detail");
 
@@ -123,8 +127,8 @@ class ARView: UIView {
         // Get IALocationManager shared instance
         let manager = IALocationManager.sharedInstance()
 
-        // Set IndoorAtlas API key
-        manager.setApiKey("ddc70c2b-e171-40fc-8ee9-85cafeeedad3", andSecret: "")
+        // Set IA API key
+        manager.setApiKey("ddc70c2b-e171-40fc-8ee9-85cafeeedad3", andSecret: "Pno9/mCAiPJwF8JNJXXmv/gp/e1xnLJ5gM67ggYH4g7x2SEEZsHmKdiX3d1+cOmfpofW2kLmyy7zatiePq6XG9hKoq45ZD2ThNezGZb7Yq2MdL2beLcqqcl/8POcQA==")
         
         // Allows testing IndoorAtlas in background mode
         // See: https://developer.apple.com/documentation/xcode/configuring-background-execution-modes

@@ -1,7 +1,10 @@
 package com.jarvismallar;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
+import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -14,6 +17,7 @@ public class JarvisMallArModule extends ReactContextBaseJavaModule {
 
   public JarvisMallArModule(ReactApplicationContext reactContext) {
     super(reactContext);
+
   }
 
   @Override
@@ -22,11 +26,13 @@ public class JarvisMallArModule extends ReactContextBaseJavaModule {
     return NAME;
   }
 
-
   // Example method
   // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
   public void multiply(double a, double b, Promise promise) {
     promise.resolve(a * b);
   }
+
+
+
 }

@@ -86,8 +86,6 @@ import { ARView } from 'react-native-jarvis-mall-ar';
 // ...
 <ARView
     sdkKey={"sdkKey"}
-    onStart={()=>{}}
-    onStop={() => {}}
     onCouponClick={() => {}}
 />
 ```

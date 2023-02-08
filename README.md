@@ -101,10 +101,6 @@ import { ARView } from 'react-native-jarvis-mall-ar';
 - `onStop` : Callback method when stop AR feature.
 - `onCouponClick` | `(couponId : string) => {}` : Callback method when user interact with the coupon on AR side.
 
-## Features
-
-`Warning: This project currently supports IOS only. Android support will come, contributions are welcomed.`
-
 ## Example
 
 `https://github.com/Viatick-co/react-native-mall-ar-sdk/tree/main/example`

@@ -1,4 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.jarvismallar">
-
+  <application>
+    <meta-data
+      android:name="com.indooratlas.android.sdk.API_KEY"
+      android:value="ddc70c2b-e171-40fc-8ee9-85cafeeedad3" />
+    <meta-data
+      android:name="com.indooratlas.android.sdk.API_SECRET"
+      android:value="Pno9/mCAiPJwF8JNJXXmv/gp/e1xnLJ5gM67ggYH4g7x2SEEZsHmKdiX3d1+cOmfpofW2kLmyy7zatiePq6XG9hKoq45ZD2ThNezGZb7Yq2MdL2beLcqqcl/8POcQA==" />
+  </application>
 </manifest>

@@ -1,6 +1,6 @@
 import { NativeModules, Platform, ViewStyle } from 'react-native';
 import { requireNativeComponent } from 'react-native';
-import React from 'react';
+import React, { LegacyRef } from "react";
 
 const LINKING_ERROR =
   `The package 'react-native-jarvis-mall-ar' doesn't seem to be linked. Make sure: \n\n` +
@@ -26,9 +26,11 @@ type ARViewProps = {
   onStart?: () => void;
   onEnd?: () => void;
   onCouponClick?: () => void;
+  ref?: LegacyRef<any>;
 };
 
 const ARView: React.FC<ARViewProps> = (props) => {
+  console.log('props', props);
   return <ARViewRaw {...props} />;
 };
 

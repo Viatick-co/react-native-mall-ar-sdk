@@ -18,7 +18,7 @@ Auto linking when using React Native >= 0.60
 
 Steps to setup in Android
 
-#### Register permissions and Service in `AndroidManifest.xml`.
+#### 1. Register permissions and Service in `AndroidManifest.xml`.
 
 Example:
 
@@ -54,6 +54,10 @@ Example:
   </application>
 </manifest>
 ```
+
+##### 2. Update build gradle in `android/build.gradle` inside `allprojects -> repositories -> maven` add the package:
+
+          `url "https://dl.cloudsmith.io/public/indooratlas/mvn-public/maven/"`
 
 ### iOS
 

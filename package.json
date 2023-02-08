@@ -41,7 +41,10 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/Viatick-co/react-native-mall-ar-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viatick-co/react-native-mall-ar-sdk.git"
+  },
   "author": "Hieu Nguyen <jack@viatick.com> (https://github.com/jackviatick)",
   "license": "MIT",
   "bugs": {
